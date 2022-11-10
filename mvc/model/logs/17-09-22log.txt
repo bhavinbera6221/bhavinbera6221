@@ -1,0 +1,33 @@
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:46:47 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:46:47 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:46:47 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:46:47 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:47:06 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:51:49 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:51:51 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:51:51 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:52:25 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:53:23 AM
+
+Error Message =>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+Error Date Time=>>17-09-22 09:56:11 AM

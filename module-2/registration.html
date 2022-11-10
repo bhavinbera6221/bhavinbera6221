@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration</title>
+    <style>
+        .container {
+            width: 100%;
+            margin: -22px auto;
+            padding: 16px;
+            
+
+        }
+
+        .regist {
+            background-color: rgb(172 183 183);
+            text-align: center;
+            margin: 0px;
+            padding: auto;
+            border: solid;
+            border-radius: 10px;
+        }
+
+        .form {
+
+            padding: 8px;
+            margin: -3px -12px;
+            width: 75px;
+            border-radius: 10px;
+            font-size: 10px;
+            width: 25px;
+        }
+
+        .p {
+            text-align: center;
+            color: #fafafd;
+        }
+        .d{
+            font-size: 13px;
+            text-align: center;
+             color: #fafafd;
+        }
+        form{ display: table;}
+        p{ display: table-row;}
+        label{ display: table-cell;}
+        input{ display: table-cell;}
+         
+    </style>
+</head>
+
+<body style="background-color: black;">
+
+
+    <div class="regist">
+        <h1>Registration</h1>
+    </div>
+    <form method="post">
+        <div class="p">
+            <h2>Personal Detail
+                <hr>
+            </h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="form">
+                    <input type="text" class="form-control" name="Name" placeholder="Enter your Name"><br>
+                    </label>
+                </div>
+                <div class="form">
+                    <input type="email" class="form-control" name="email" placeholder="Enter your Email"><br>
+                </div>
+                <div class="form">
+                    <input type="number" class="form-control" name="phone" placeholder="Enter your No."><br>
+                </div>
+            </div>
+        </div>
+                <div class="d">
+                    <h2>Address<hr></h2>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="form">
+                            <textarea name="address" id="address" cols="21" rows="3" placeholder="Enter Address"></textarea>
+                        </div>
+                        <div class="form">
+                            <input type="number" class="form-control" name="pincode" cols="30" placeholder="Enter Pincode"><br>
+                        </div>
+                        <div class="form">
+                            <input type="text" class="form-control" name="county" placeholder="country Name"><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="d">
+                    <h2>Card Detail<hr></h2>
+                </div>
+                <form>
+                <p>
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname" id="a">
+                </p>
+                <p>
+                    <label for="lname">very very last</label>
+                    <input type="text" name="fname" id="a">
+                </p>
+    </form>
+
+</body>
+
+</html>
