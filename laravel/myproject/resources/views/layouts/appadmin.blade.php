@@ -8,15 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://fontawesome.com/v4/assets/font-awesome/css/font-awesome.css">
 
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <?php
+    $Baseurl  = explode("/",Request::url());
+    // print_r($Baseurl);
+    
+    ?>
+    <link href="<?php echo $Baseurl[0]."//".$Baseurl[2]; ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- <link  href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="http://localhost:8000/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -69,8 +75,6 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -116,9 +120,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            <!-- Sidebar Message -->
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -271,28 +272,8 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Add New Product</h6>
-
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <form action="storeproduct" method="post">
-                                    <!-- @csrf -->
-                                    <!-- {{ csrf_token() }} -->
-                                    <!-- <input type="text" name="_token" value="{{ csrf_token() }}" id=""> -->
-                                    <input type="text" name="title"  id="">
-                                    <input type="submit" name="saveprod" value="Add">
-                                </form>
-                                {!! Form::open(['url' => 'foo/bar']) !!}
-                                {!! Form::text('username'); !!}
-                                {!! Form::close() !!}
-                            </div>
-                        </div>
-                    </div>
+                    @yield('content');
+                    
                     <div class="container">
 
                     </div>

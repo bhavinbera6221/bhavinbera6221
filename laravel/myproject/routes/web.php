@@ -24,3 +24,6 @@ Route::view('/testroute', 'mypage');
 Route::get('/allproducts',[App\Http\Controllers\ProductController::class, 'index']);
 Route::get('/addnewproduct',[App\Http\Controllers\ProductController::class, 'create']);
 Route::post('/storeproduct',[App\Http\Controllers\ProductController::class, 'store']);
+Route::get('/deleteprod/{prodid?}',[App\Http\Controllers\ProductController::class, 'destroy']);
+Route::get('/editprod/{prodid?}',[App\Http\Controllers\ProductController::class, 'edit']);
+Route::post('/saveeditedproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'update']);

@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         $CategoriesData = ['something'];
-        return view("addnewproducts",compact('CategoriesData')); 
+        return view("addnewproducts", compact('CategoriesData'));
         // dd("testing");
     }
 
@@ -39,9 +39,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, product $product)
     {
-        dd($request);
+        // dd($request->all());
+        // $product->title=$request->title;
+        // $product->description=$request->description;
+        // $product->price=$request->price;
+        // $product->quantity=$request->quantity;
+        $data = $request->except('btn-save', '_token');
+        // dd($data);
+        foreach ($data as $key => $value) {
+            $product->$key = $value;
+        }
+        $product->save();
+        return redirect("allproducts");
     }
 
     /**
@@ -61,9 +72,12 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(product $product)
+    public function edit($prodid, product $product)
     {
-        //
+        $productData = $product::find($prodid);
+        return view("editproducts", compact('productData'));
+        // dd($product);
+
     }
 
     /**
@@ -73,9 +87,17 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product)
+    public function update($prodid, Request $request, product $product)
     {
-        //
+        $productData = $product::find($prodid);
+        // dd($request->all());
+        $data = $request->except('btn-save', '_token');
+        foreach ($data as $key => $value) {
+            $productData->$key = $value;
+        }
+        $productData->save();
+        return redirect("allproducts");
+
     }
 
     /**
@@ -84,8 +106,12 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy($prodid, product $product)
     {
-        //
+        // dd($prodid);
+        // $res=$product::where('id',$prodid)->delete();
+        $product = $product::find($prodid);
+        $product->delete();
+        return redirect("allproducts");
     }
 }

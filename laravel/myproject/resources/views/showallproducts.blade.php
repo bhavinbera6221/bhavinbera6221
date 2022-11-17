@@ -22,7 +22,7 @@
                                 <th>Descrition</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                <th>Action</th>
+                                <th class="col col-lg-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +34,10 @@
                                 <td>{{ $data->description }}</td>
                                 <td>{{ $data->price }}</td>
                                 <td>{{ $data->quantity }}</td>
-                                <td>{{ $data->id }}</td>
+                                <td>
+                                    <a href="deleteprod/{{ $data->id }}" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="editprod/{{ $data->id }}" class="btn btn-sm btn-info">Edit</a>
+                                </td>
                             </tr>
                             <?php
                             $sr++;
