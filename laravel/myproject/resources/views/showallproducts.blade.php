@@ -22,21 +22,22 @@
                                 <th>Descrition</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                <th class="col col-lg-2">Action</th>
+                                <th class="col col-lg-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $sr = "1"; ?>
                             @foreach($ProductsData as $data)
                             <tr>
-                                <td>{{ $sr }}</td>
+                                <td  class="bg-dark text-light">{{ $sr }}</td>
                                 <td>{{ $data->title }}</td>
                                 <td>{{ $data->description }}</td>
                                 <td>{{ $data->price }}</td>
                                 <td>{{ $data->quantity }}</td>
-                                <td>
+                                <td>    
+                                    <a href="editprod/{{ $data->id }}" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="deleteprod/{{ $data->id }}" class="btn btn-sm btn-danger">Delete</a>
-                                    <a href="editprod/{{ $data->id }}" class="btn btn-sm btn-info">Edit</a>
+                                    <a href="viewproduct/{{ $data->id }}" class="btn btn-sm btn-success">View</a>
                                 </td>
                             </tr>
                             <?php

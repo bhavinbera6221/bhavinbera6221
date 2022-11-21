@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" href="https://fontawesome.com/v4/assets/font-awesome/css/font-awesome.css">
 
     <title>SB Admin 2 - Dashboard</title>
 

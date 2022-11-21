@@ -21,6 +21,13 @@ class ProductController extends Controller
         return view("showallproducts", compact('ProductsData'));
     }
 
+    public function view($prodid, product $product)
+    {
+        $productData = $product::find($prodid);
+        // dd($productData);
+        return view("viewproduct", compact('productData'));
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -97,7 +104,6 @@ class ProductController extends Controller
         }
         $productData->save();
         return redirect("allproducts");
-
     }
 
     /**

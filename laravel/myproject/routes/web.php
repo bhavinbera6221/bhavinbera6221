@@ -27,3 +27,4 @@ Route::post('/storeproduct',[App\Http\Controllers\ProductController::class, 'sto
 Route::get('/deleteprod/{prodid?}',[App\Http\Controllers\ProductController::class, 'destroy']);
 Route::get('/editprod/{prodid?}',[App\Http\Controllers\ProductController::class, 'edit']);
 Route::post('/saveeditedproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'update']);
+Route::get('/viewproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'view']);

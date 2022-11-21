@@ -17,26 +17,28 @@
     $password = "";
     $dbname = "test";
 
-    $dbconnection = mysqli_connect($servername, $username, $password, $dbname);
+    // $dbconnection = mysqli_connect($servername, $username, $password, $dbname);
 
     if ($dbconnection->connect_error) {
         die("connection failed" . $dbconnection->connect_error);
     }
-    
+
     if (isset($_REQUEST['submit'])) {
         $hobby = implode(",", $_POST['hobby']);
         array_pop($_POST);
         unset($_POST['hobby']);
-    
+
         $tmp_name = $_FILES['prof_pic']['tmp_name'];
         $file_name = $_FILES['prof_pic']['name'];
         move_uploaded_file($tmp_name, "test/$file_name");
 
         $insert = mysqli_query($dbconnection, "INSERT INTO data(`name`,`email`,`mobile`,`gender`,`hobby`,`prof_pic`) VALUES('$_POST[name]','$_POST[email]','$_POST[mobile]','$_POST[gender]','$hobby','$file_name')");
     }
+
     if (isset($_POST['delete'])) {
         $delete = mysqli_query($dbconnection, "DELETE FROM `data` WHERE `name`='$_POST[name]' OR `email`='$_POST[email]' OR `mobile`='$_POST[mobile]'");
     }
+
     if (isset($_POST['update'])) {
         $hobby = implode(",", $_POST['hobby']);
         array_pop($_POST);
@@ -45,9 +47,9 @@
         $tmp_name = $_FILES['prof_pic']['tmp_name'];
         $file_name = $_FILES['prof_pic']['name'];
         move_uploaded_file($tmp_name, "test/$file_name");
-        
-        $update= "UPDATE `data` SET `name`='$_POST[name]',`email`='$_POST[email]',`mobile`='$_POST[mobile]',`gender`='$_POST[gender]',`hobby`='$hobby',`prof_pic`='$file_name' WHERE `name`='$_POST[name]'";
-        $result= mysqli_query($dbconnection,$update);
+
+        $update = "UPDATE `data` SET `name`='$_POST[name]',`email`='$_POST[email]',`mobile`='$_POST[mobile]',`gender`='$_POST[gender]',`hobby`='$hobby',`prof_pic`='$file_name' WHERE `name`='$_POST[name]'";
+        $result = mysqli_query($dbconnection, $update);
     }
 
     ?>
@@ -103,6 +105,26 @@
             <div class="col">
             </div>
         </div>
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Gender</th>
+                    <th>hobby</th>
+                    <th>Prof_pic</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?php echo ?></td>
+                </tr>
+            </tbody>
+        </table>
+
 
     </form>
 </body>
