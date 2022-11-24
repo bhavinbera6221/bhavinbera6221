@@ -3,6 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <div class="form-group">
+            <label for="bank_name">Bank Name</label>
+            {{ Form::selectBank("bank_name", $merchant['paymentInfo']->bank_name ?? null,["class"=>"form-control"]) }}
+        </div>
+        <br>
+        <br>
+        <br>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
@@ -22,22 +29,22 @@
                                 <th>Descrition</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                <th class="col col-lg-3">Action</th>
+                                <th class="col col-lg-4">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $sr = "1"; ?>
                             @foreach($ProductsData as $data)
                             <tr>
-                                <td  class="bg-dark text-light">{{ $sr }}</td>
+                                <td class="bg-dark text-light">{{ $sr }}</td>
                                 <td>{{ $data->title }}</td>
                                 <td>{{ $data->description }}</td>
                                 <td>{{ $data->price }}</td>
                                 <td>{{ $data->quantity }}</td>
-                                <td>    
+                                <td>
                                     <a href="editprod/{{ $data->id }}" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="deleteprod/{{ $data->id }}" class="btn btn-sm btn-danger">Delete</a>
-                                    <a href="viewproduct/{{ $data->id }}" class="btn btn-sm btn-success">View</a>
+                                    <a href="viewproduct/{{ $data->id }}" class="btn btn-sm btn-success">Download</a>
                                 </td>
                             </tr>
                             <?php

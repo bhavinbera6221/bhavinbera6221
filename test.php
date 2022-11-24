@@ -17,7 +17,7 @@
     $password = "";
     $dbname = "test";
 
-    // $dbconnection = mysqli_connect($servername, $username, $password, $dbname);
+    // $dbconnec tion = mysqli_connect($servername, $username, $password, $dbname);
 
     if ($dbconnection->connect_error) {
         die("connection failed" . $dbconnection->connect_error);

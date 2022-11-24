@@ -27,4 +27,7 @@ Route::post('/storeproduct',[App\Http\Controllers\ProductController::class, 'sto
 Route::get('/deleteprod/{prodid?}',[App\Http\Controllers\ProductController::class, 'destroy']);
 Route::get('/editprod/{prodid?}',[App\Http\Controllers\ProductController::class, 'edit']);
 Route::post('/saveeditedproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'update']);
-Route::get('/viewproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'view']);
+Route::view('/sendmailview', 'sendmailview');
+Route::post('/sendmailtest',[App\Http\Controllers\HomeController::class, 'sendmail']);
+// Route::get('/viewproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'view']);
+Route::get('/viewproduct/{prodid?}', [App\Http\Controllers\ProductController::class, 'generatePDF']);

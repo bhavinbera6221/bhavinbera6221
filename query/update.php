@@ -10,9 +10,20 @@
 </head>
 
 <body>
-    <form action="select.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <?php
         include 'dbcon.php';
+
+        // $servername = "localhost";
+        // $username = "root";
+        // $password = "";
+        // $db = "test";
+
+        // $con = mysqli_connect($servername, $username, $password, $db);
+
+        // if ($con->connect_error) {
+        //     die("connection failed" . $con->connect_error);
+        // }
 
         $id = $_GET['id'];
         $select = "SELECT * FROM `data` WHERE id=$id";
@@ -32,25 +43,28 @@
             array_pop($_POST);
             unset($_POST['hobby']);
 
+
             $tmp_name = $_FILES['prof_pic']['tmp_name'];
             $file_name = $_FILES['prof_pic']['name'];
             move_uploaded_file($tmp_name, "upload/$file_name");
-           
-           $update= "UPDATE `data` SET `name`='$name',`email`='$email',`mobile`='$mobile',`gender`='$gender',`hobby`='$hobby',`prof_pic`='$file_name' WHERE id=$id";
 
-            //  $update = " UPDATE `data` SET name='$name', email='$email', mobile='$mobile', gender='$gender', hobby='$hobby', prof_pic='$file_name' WHERE id=$id";
-            $query = mysqli_query($con,$update);
-            if ($query) {
+            $update = "UPDATE `data` SET `name`='$name',`email`='$email',`mobile`='$mobile',`gender`='$gender',`hobby`='$hobby',`prof_pic`='$file_name' WHERE id=$id";
+            // $update = " UPDATE `data` SET name='$_POST[name]', email='$_POST[email]', mobile='$_POST[mobile]', gender='$_POST[gender]', hobby='$_POST[hobby]', prof_pic='$_POST[prof_pic]' WHERE id=$id";
+
+            $updatequery = mysqli_query($con, $update);
+
+            if ($updatequery) {
         ?>
                 <script>
-                    alert("update");
+                    alert("Updated Succesfully!!");
                 </script>
 
             <?php
+                header("location:select.php");
             } else {
             ?>
                 <script>
-                    alert("update");
+                    alert("Not update");
                 </script>
         <?php
             }
@@ -89,17 +103,20 @@
                                                         } ?> id="playing" value="playing"> <label for="playing">Playing</label>
                 <input type="checkbox" name="hobby[]" <?php if (in_array("reading", $hobbyarray)) {
                                                             echo "checked";
-                                                        } ?> value="" id="reading" value="reading"> <label for="reading">Reading</label>
+                                                        } ?>  id="reading" value="reading"> <label for="reading">Reading</label>
                 <input type="checkbox" name="hobby[]" <?php if (in_array("travelling", $hobbyarray)) {
                                                             echo "checked";
-                                                        } ?> value="" id="travelling" value="travelling"> <label for="travelling">Travelling</label>
+                                                        } ?> id="travelling" value="travelling"> <label for="travelling">Travelling</label>
             </div>
             <div class="input-group mb-3">
-                <input type="file" name="prof_pic" class="form-control" id="prof_pic">
-                <input type="text" name="prof_pic" value="<?php echo $result['prof_pic']; ?>" class="form-control" id="prof_pic">
+                <label for="prof_pic" class="form-label">Prof_pic
+                    <input type="file" name="prof_pic" <?php $result['prof_pic']; ?> class="form-control" id="prof_pic">
+                    <input type="text" name="prof_pic" value="<?php echo $result['prof_pic']; ?>" class="form-control" id="prof_pic">
+                </label>
             </div>
 
-            <button type="submit" name="update" value="update" class="btn btn-primary">Update</button>
+            <button type="submit" name="update" value="update" id="
+            update" class="btn btn-primary">Update</button>
             <a href="select.php">
             </a>
         </div>

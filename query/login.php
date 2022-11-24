@@ -40,7 +40,6 @@
             </div>
             <div class="input-group mb-3">
                 <input type="file" name="prof_pic" class="form-control" id="prof_pic">
-                <label class="input-group-text" for="prof_pic">Upload</label>
             </div>
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
             <a href="select.php">
@@ -51,7 +50,6 @@
 </body>
 </html>
 <?php
-
 
 include 'dbcon.php';
 

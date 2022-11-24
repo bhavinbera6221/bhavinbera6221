@@ -25,4 +25,20 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+
+    public function sendmail(Request $request)
+    {
+        // dd($request->all());
+            $data = array('name'=>"Bhavin");
+            $mailto = $request->to;
+
+            \Mail::send(['html'=>'mail'], $data, function($message) use($mailto) {
+                // dd($mailto);
+               $message->to($mailto, 'Welcome to my site')->subject
+                  ('Congratulation');
+               $message->from('bhavinahir6221@gmail.com','bhavin ahir');
+            });
+            echo "Basic Email Sent. Check your inbox.";
+    }
 }

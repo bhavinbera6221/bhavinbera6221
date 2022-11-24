@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use PDF;
 
 class ProductController extends Controller
 {
@@ -12,6 +13,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(product $product)
     {
         // dd("inside controller");
@@ -60,6 +65,25 @@ class ProductController extends Controller
         }
         $product->save();
         return redirect("allproducts");
+    }
+    public function generatePDF($prodid,product $product)
+    {
+        // dd($request->all());
+        // $ProductData = $product->get();
+        $productData = $product::find($prodid);
+
+
+        $data = [
+            'title' => 'Welcome to Your Site',
+            'date' => date('m/d/Y')];
+          
+        $viewdata = array($data, $productData);
+        
+        $pdf = PDF::loadView('myPDF', $viewdata);
+    
+        return $pdf->download('custompdf.pdf');
+        // return $pdf->download('custompdf.pdf')view("viewproduct", compact('productData'));
+
     }
 
     /**
