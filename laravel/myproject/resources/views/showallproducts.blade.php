@@ -10,7 +10,7 @@
         <br>
         <br>
         <br>
-        <div class="col-md-8">
+        <div class="col-md-11">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -29,7 +29,8 @@
                                 <th>Descrition</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                <th class="col col-lg-4">Action</th>
+                                <th>Action</th>
+                                <!-- <th class="col col-lg-4">Action</th> -->
                             </tr>
                         </thead>
                         <tbody>

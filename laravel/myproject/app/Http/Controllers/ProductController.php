@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use App\DataTables\UsersDataTable;
+use App\DataTables\ProductDataTable;
+
+
 use PDF;
 
 class ProductController extends Controller
@@ -24,6 +28,11 @@ class ProductController extends Controller
         $ProductsData = $product->get();
 
         return view("showallproducts", compact('ProductsData'));
+    }
+
+    public function datacalling(ProductDataTable $dataTable, product $product)
+    {
+        return $dataTable->render('users.index');
     }
 
     public function view($prodid, product $product)
@@ -66,20 +75,27 @@ class ProductController extends Controller
         $product->save();
         return redirect("allproducts");
     }
-    public function generatePDF($prodid,product $product)
+    public function generatePDF($prodid,product $product,Request $request)
     {
         // dd($request->all());
-        // $ProductData = $product->get();
-        $productData = $product::find($prodid);
-
+        $ProductData = $product->get();
+        $ProductDataid = $product::find($prodid);
+        // dd($ProductDataid);
+        // dd($pro());
+        // echo "<pre>";
+        // print_r($ProductDataid);
+        // print_r($pro);
+        // echo "<pre>";
+        
 
         $data = [
             'title' => 'Welcome to Your Site',
             'date' => date('m/d/Y')];
-          
-        $viewdata = array($data, $productData);
+            // dd($data);
         
-        $pdf = PDF::loadView('myPDF', $viewdata);
+            // $viewdata = array_merge($data, $productData);
+            // dd($viewdata);
+        $pdf = PDF::loadView('myPDF',$data);
     
         return $pdf->download('custompdf.pdf');
         // return $pdf->download('custompdf.pdf')view("viewproduct", compact('productData'));

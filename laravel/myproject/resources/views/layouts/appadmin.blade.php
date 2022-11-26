@@ -13,15 +13,20 @@
 
     <!-- Custom fonts for this template-->
     <?php
-    $Baseurl  = explode("/",Request::url());
+    $Baseurl  = explode("/", Request::url());
     // print_r($Baseurl);
-    
+
     ?>
-    <link href="<?php echo $Baseurl[0]."//".$Baseurl[2]; ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $Baseurl[0] . "//" . $Baseurl[2]; ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- <link  href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
 
     <!-- Custom styles for this template-->
     <link href="http://localhost:8000/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 
 </head>
 
@@ -46,7 +51,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -63,13 +68,14 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Products</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Custom Products:</h6>
+                        <a class="collapse-item" href="addnewproduct">Add New Product</a>
+                        <a class="collapse-item" href="datacalling">View Data Table</a>
+                        <a class="collapse-item" href="allproducts">View All Product</a>
                     </div>
                 </div>
             </li>
@@ -272,7 +278,7 @@
                 <div class="container-fluid">
                     <!-- Area Chart -->
                     @yield('content');
-                    
+
                     <div class="container">
 
                     </div>
@@ -323,7 +329,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -338,6 +344,7 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    @stack('scripts')
 
 </body>
 
