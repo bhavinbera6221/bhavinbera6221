@@ -46,10 +46,7 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="testroute">testing</a>
-                            <!-- <a  href="{{ route('login') }}">{{ __('Login') }}</a> -->
-                        </li>
+
                         @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -63,7 +60,7 @@
                         @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="admindashboard">admin</a>
+                            <a class="nav-link" href="admin">admin</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -81,10 +78,10 @@
                                 </form>
                             </div>
                         </li>
-                        @endguest
                         <li class="nav-item">
                             <a class="nav-link" href="allproducts">products</a>
                         </li>
+                        @endguest
                     </ul>
                 </div>
             </div>

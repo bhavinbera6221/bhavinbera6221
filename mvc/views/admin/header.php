@@ -29,6 +29,8 @@ if (isset($_SESSION['UserData'])) {
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo $this->base_url_assets; ?>admin/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"> -->
 
     <!-- Custom CSS -->
     <link href="<?php echo $this->base_url_assets; ?>admin/css/style.css" rel='stylesheet' type='text/css' />

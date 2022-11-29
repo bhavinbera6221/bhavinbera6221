@@ -76,6 +76,7 @@
                         <a class="collapse-item" href="addnewproduct">Add New Product</a>
                         <a class="collapse-item" href="datacalling">View Data Table</a>
                         <a class="collapse-item" href="allproducts">View All Product</a>
+                        <a class="collapse-item" href="macros">View Macros Ex.</a>
                     </div>
                 </div>
             </li>

@@ -62,7 +62,13 @@ class ProductController extends Controller
      */
     public function store(Request $request, product $product)
     {
-        // dd($request->all());
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            'price' => 'required|max:10000',
+            'quantity' => 'required|max:1000'
+        ]);
+        // dd($request->all());  
         // $product->title=$request->title;
         // $product->description=$request->description;
         // $product->price=$request->price;
@@ -81,16 +87,17 @@ class ProductController extends Controller
         $ProductData = $product->get();
         $ProductDataid = $product::find($prodid);
         // dd($ProductDataid);
-        // dd($pro());
-        // echo "<pre>";
-        // print_r($ProductDataid);
-        // print_r($pro);
-        // echo "<pre>";
         
 
         $data = [
-            'title' => 'Welcome to Your Site',
-            'date' => date('m/d/Y')];
+            'date' => date('m/d/Y'), 
+            'id' => $ProductDataid['id'],
+            'title' => $ProductDataid['title'],
+            'description' => $ProductDataid['description'],
+            'price' => $ProductDataid['price'],
+            'quantity' => $ProductDataid['quantity'],
+        ];
+
             // dd($data);
         
             // $viewdata = array_merge($data, $productData);

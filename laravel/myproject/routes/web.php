@@ -29,7 +29,8 @@ Route::get('/deleteprod/{prodid?}',[App\Http\Controllers\ProductController::clas
 Route::get('/editprod/{prodid?}',[App\Http\Controllers\ProductController::class, 'edit']);
 Route::post('/saveeditedproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'update']);
 Route::view('/sendmailview', 'sendmailview');
+Route::view('/macros', 'macros');
 Route::post('/sendmailtest',[App\Http\Controllers\HomeController::class, 'sendmail']);
 // Route::get('/viewproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'view']);
-Route::get('/viewproduct/{prodid?}', [App\Http\Controllers\ProductController::class, 'generatePDF']);
+Route::get('/generatepdf/{prodid?}', [App\Http\Controllers\ProductController::class, 'generatePDF']);
 Route::get('/datacalling', [App\Http\Controllers\ProductController::class, 'datacalling'])->name('users.index');

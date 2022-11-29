@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.appadmin')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="bank_name">Bank Name</label>
             {{ Form::selectBank("bank_name", $merchant['paymentInfo']->bank_name ?? null,["class"=>"form-control"]) }}
         </div>
         <br>
         <br>
-        <br>
-        <div class="col-md-11">
+        <br> -->
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -29,8 +29,8 @@
                                 <th>Descrition</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                <th>Action</th>
-                                <!-- <th class="col col-lg-4">Action</th> -->
+                                <!-- <th>Action</th> -->
+                                <th class="col col-lg-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,7 +45,10 @@
                                 <td>
                                     <a href="editprod/{{ $data->id }}" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="deleteprod/{{ $data->id }}" class="btn btn-sm btn-danger">Delete</a>
-                                    <a href="viewproduct/{{ $data->id }}" class="btn btn-sm btn-success">Download</a>
+                                    <!-- <a href="viewproduct/{{ $data->id }}" class="btn btn-sm btn-success">Download</a> -->
+                                    <a href="generatepdf/{{ $data->id }}" class="btn btn-sm btn-success">Download</a>
+                                    
+                                    
                                 </td>
                             </tr>
                             <?php
