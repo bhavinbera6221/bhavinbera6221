@@ -1,6 +1,4 @@
-<?php
-include('header.php');
-?>
+
 <!-- Service breadcrumb -->
 <section class="w3l-about-breadcrumb text-center">
   <div class="breadcrumb-bg breadcrumb-bg-about py-5">
@@ -309,9 +307,6 @@ include('header.php');
 <script src="assets/js/bootstrap.min.js"></script>
 
 
-<?php
-include('footer.php');
-?>
 </body>
 
 </html>

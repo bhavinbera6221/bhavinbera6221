@@ -1,8 +1,4 @@
-<?php
-include('header.php');
-// include('footer.php');
 
-?>
 
 <!-- about breadcrumb -->
 <section class="w3l-about-breadcrumb text-center">
@@ -255,9 +251,6 @@ include('header.php');
 
 <script src="assets/js/bootstrap.min.js"></script>
 
-<?php
-include('footer.php');
-?>
 </body>
 
 </html>

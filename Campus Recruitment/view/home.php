@@ -1,6 +1,4 @@
-<?php
-include('header.php');
-?>
+
 <!--/header-->
 
 <!-- hero slider Start -->
@@ -426,10 +424,6 @@ include('header.php');
 <!-- //Search -->
 
 <script src="assets/js/bootstrap.min.js"></script>
-
-<?php
-include('footer.php');
-?>
 
 </body>
 
