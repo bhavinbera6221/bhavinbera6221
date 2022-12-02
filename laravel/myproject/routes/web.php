@@ -34,3 +34,6 @@ Route::post('/sendmailtest',[App\Http\Controllers\HomeController::class, 'sendma
 // Route::get('/viewproduct/{prodid?}',[App\Http\Controllers\ProductController::class, 'view']);
 Route::get('/generatepdf/{prodid?}', [App\Http\Controllers\ProductController::class, 'generatePDF']);
 Route::get('/datacalling', [App\Http\Controllers\ProductController::class, 'datacalling'])->name('users.index');
+
+Route::view('/ajaxview', 'ajaxview');
+Route::get('/selectallcategorydata', [App\Http\Controllers\AjaxController::class, 'index']);
