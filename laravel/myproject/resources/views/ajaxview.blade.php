@@ -17,12 +17,22 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    Wel Come to Ajax View
+                    <table class="table table-bordered">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th class="col col-lg-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="DespCat"></tbody>
+                    </table>
                 </div>
 
 
                 <!-- Modal -->
-                <form method="post">
+                <form method="post" id="category_form">
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -35,19 +45,20 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col">
-                                            <input type="text" name="title" class="form-control" id="title" placeholder="Enter Your Title">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}" class="form-control" id="_token">
+                                            <input type="text" name="category_title" class="form-control" id="category_title" placeholder="Enter Your Title">
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col">
-                                            <textarea name="description" id="description" class="
+                                            <textarea name="category_description" id="category_description" class="
                                             form-control" cols="50" rows="3" placeholder="Enter Your Description"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" onclick="savecategorydata()" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" id="save" onclick="savecategorydata()" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -61,16 +72,137 @@
 @push('scripts')
 
 <script>
-    function savecategorydata(params) {
-        event.preventDefault();
-        // console.log("called");
+    // $(document).ready(function() {
+
+    //     alert("Document is ready");
+    // });
+    $(window).on("load", function() {
+        fetchData();
+    });
+
+    function fetchData() {
         $.ajax({
-            url:""
-            success:function(responce);
-            console.log(responce);
+            url: "selectallcategorydata",
+            success: function(responce) {
+                console.log(responce);
+                htmltabledata = ""
+                count = "1"
+                responce.forEach(element => {
+                    htmltabledata += `<tr>
+                    <td>${count}</td>
+                    <td>${element.category_title}</td>
+                    <td>${element.category_description}</td>
+                    <td>
+                    <button class="btn btn-sm btn-primary" onclick="editdata(${element.category_id})">edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deletedata(${element.category_id})">delete</button>
+                    </td>
+                    
+                    </tr>`
+                    count++;
+                });
+                $("#DespCat").html(htmltabledata)
+            }
+
         })
-        
+
     }
+
+
+
+    function savecategorydata() {
+        event.preventDefault();
+        // var serialize = $('#category_form').serialize();
+        // var serializearray = $('#category_form').serializeArray();
+
+        var result = {};
+        $.each($('#category_form').serializeArray(), function() {
+            result[this.name] = this.value;
+        });
+        console.log(result);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: result,
+            url: "savecategorydata",
+            success: function(responce) {
+                console.log(responce);
+                if (responce == 1) {
+                    $('#exampleModal').modal('hide');
+                    fetchData();
+                } else {
+                    alert("Error while inserting")
+                }
+            }
+        })
+
+    }
+    function editdata(id) {
+        event.preventDefault();
+        let token = $('#_token').val();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: {id:id, _token:token},
+            url: "editcategorydata",
+            success: function(responce) {
+                $('#exampleModal').modal('show');
+                $("#category_title").val(responce.category_title);
+                $("#category_description").val(responce.category_description);
+                $("#save").attr("onclick","updatedata("+responce.category_id+")");
+
+            }
+        })
+
+    }
+    
+function updatedata(id) {
+    event.preventDefault();
+    // console.log("called");
+    var result = {};
+        $.each($('#category_form').serializeArray(), function() {
+            result[this.name] = this.value;
+        });
+        console.log(result);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: result,
+            url: `updatecategorydata/${id}`,
+            success: function(responce) {
+                console.log(responce);
+                if (responce == 1) {
+                    $('#exampleModal').modal('hide');
+                    fetchData();
+                } else {
+                    alert("Error while inserting")
+                }
+            }
+        })
+}
+
+function deletedata(id) {
+    event.preventDefault();
+    var result = {};
+        $.each($('#category_form').serializeArray(), function() {
+            result[this.name] = this.value;
+        });
+        console.log(result);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: result,
+            url: `deletecategorydata/${id}`,
+            success: function(responce) {
+                console.log(responce);
+                if (responce == 1) {
+                    fetchData();
+                } else {
+                    alert("Error while deleting")
+                }
+            }
+        })
+}
+
 </script>
 
 @endpush

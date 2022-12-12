@@ -37,3 +37,11 @@ Route::get('/datacalling', [App\Http\Controllers\ProductController::class, 'data
 
 Route::view('/ajaxview', 'ajaxview');
 Route::get('/selectallcategorydata', [App\Http\Controllers\AjaxController::class, 'index']);
+Route::post('/savecategorydata', [App\Http\Controllers\AjaxController::class, 'store']);
+Route::any('/editcategorydata', [App\Http\Controllers\AjaxController::class, 'edit']);
+Route::any('/updatecategorydata/{id}', [App\Http\Controllers\AjaxController::class, 'update']);
+Route::any('/deletecategorydata/{id}', [App\Http\Controllers\AjaxController::class, 'destroy']);
+
+Route::view('/viewformiddleware','viewformiddleware');
+
+Route::any('/agecheking',  [App\Http\Controllers\ProductController::class, 'checkmiddleware'])->middleware('Age');

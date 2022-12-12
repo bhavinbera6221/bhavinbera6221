@@ -21,6 +21,14 @@ class ProductController extends Controller
     {
         $this->middleware('auth');
     }
+
+
+    public function checkmiddleware()
+    {
+        dd("checking middleware");
+    }
+
+
     public function index(product $product)
     {
         // dd("inside controller");

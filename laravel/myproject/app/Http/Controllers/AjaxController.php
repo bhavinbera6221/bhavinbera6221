@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\categaries;
 
 class AjaxController extends Controller
 {
@@ -11,9 +12,11 @@ class AjaxController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(categaries $category)
     {
-        //
+        return $category->get();
+        // dd($allcategories);
+        // return "something";
     }
 
     /**
@@ -32,16 +35,21 @@ class AjaxController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, categaries $category)
     {
-        //
+        // dd($request->all());;
+        // dd($request->category_description);
+        $category->category_title = $request->category_title;
+        $category->category_description = $request->category_description;
+        $data = $category->save();
+        return $data;
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @ret;urn \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -54,9 +62,10 @@ class AjaxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, categaries $category)
     {
-        //
+        return $categoryByTd = $category::find($request->id);
+        // dd($categoryByTd);
     }
 
     /**
@@ -66,9 +75,14 @@ class AjaxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, categaries $category, $id)
     {
-        //
+        // dd($request->id);
+        $categoryById = $category::find($request->id);
+        $categoryById->category_title = $request->category_title;
+        $categoryById->category_description = $request->category_description;
+        $data = $categoryById->save();
+        return $data;
     }
 
     /**
@@ -77,8 +91,10 @@ class AjaxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(categaries $category, $id)
     {
-        //
+        $categoryById = $category::find($id);
+        $data = $categoryById->delete();
+        return $data;
     }
 }
