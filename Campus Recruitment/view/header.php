@@ -55,8 +55,11 @@
               <a class="nav-link" href="contact">Contact</a>
             </li>
             <?php
-            if ($_SESSION['UserData']) {
+            if(isset($_SESSION['UserData'])) {
             ?>
+              <li class="nav-item @@contact__active">
+                <a class="nav-link" href="apply">Apply</a>
+              </li>
               <li class="nav-item @@contact__active">
                 <a class="nav-link" href="logout">logout</a>
               </li>

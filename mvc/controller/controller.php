@@ -101,7 +101,7 @@
             break;
           case '/deleteuser':
             $FetchAllUserData = $this->delete('user', array("id" => $_GET['userid'], "roll_id" => 2));
-            header("location:allusers");
+            header("location:admindashboard");
             break;
 
           case '/edituser':

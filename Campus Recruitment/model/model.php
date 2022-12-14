@@ -39,8 +39,8 @@ class Model
         // echo $SQL;
         $SQLEx = $this->dbconnection->query($SQL);
         // return $SQL;
-        echo "<pre>";
-        print_r($SQLEx);
+        // echo "<pre>";
+        // print_r($SQLEx);
         if ($SQLEx->num_rows > 0) {
             while ($fData = $SQLEx->fetch_object()) {
                 $FetchData[] = $fData;
@@ -109,12 +109,67 @@ class Model
 
     public function insert($tbl, $Data)
     {
-        // echo "<pre>";
-        // print_r($Data);
-        // print_r(array_keys($data));
         $cols = implode(",", array_keys($Data));
         $vals = implode("','", $Data);
         $SQL = "INSERT INTO $tbl($cols) VALUES('$vals')";
+        // echo "<pre>";
+        // echo "</pre>";
+        $SQLEx = $this->dbconnection->query($SQL);
+        // print_r($SQLEx);
+        if ($SQLEx > 0) {
+            $Data['Msg'] = "Success";
+            $Data['Data'] = 1;
+            $Data['Code'] = 1;
+        } else {
+            $Data['Msg'] = "Try Again";
+            $Data['Data'] = 0;
+            $Data['Code'] = 0;
+        }
+        return $Data;
+    }
+
+    public function update($tbl, $Data, $where)
+    {
+        $SQL = "UPDATE $tbl SET ";
+        foreach ($Data as $key => $value) {
+            $SQL .= " $key = '$value',";
+        }
+        $SQL = rtrim($SQL, ",");
+        $SQL .= " WHERE";
+        foreach ($where as $key => $value) {
+            $SQL .= " $key = '$value' AND";
+        }
+        echo "<pre>";
+        $SQL = rtrim($SQL, "AND");
+        // print_r($SQL);
+        // exit;
+        $SQLEx = $this->dbconnection->query($SQL);
+        // print_r($SQLEx);
+
+        if ($SQLEx > 0) {
+            $Data['Msg'] = "Success";
+            $Data['Data'] = 1;
+            $Data['Code'] = 1;
+        } else {
+            $Data['Msg'] = "Try Again";
+            $Data['Data'] = 0;
+            $Data['Code'] = 0;
+        }
+        return $Data;
+    }
+
+    public function delete($tbl, $where)
+    {
+        $SQL = "DELETE FROM $tbl";
+        $SQL .= " WHERE ";
+
+        foreach ($where as $key => $value) {
+            $SQL .= " $key = $value AND";
+        }
+        $SQL = rtrim($SQL, "AND");
+        // echo "<per>";
+        // print_r($SQL);
+        // exit;
         $SQLEx = $this->dbconnection->query($SQL);
         if ($SQLEx > 0) {
             $Data['Msg'] = "Success";
@@ -127,6 +182,7 @@ class Model
         }
         return $Data;
     }
+   
 }
 // $Model = new Model; 
 // echo $Model->select("users");

@@ -67,7 +67,6 @@ Author URL: http://w3layouts.com
                         <?php
                         } else {
                         ?>
-
                             <li class="nav-item dropdown @@pages__active">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Account <span class="fa fa-angle-down"></span>
