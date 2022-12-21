@@ -24,12 +24,13 @@ class nothing extends mobile{
     function nothingfunction(){return "nothing new series start"; }
 }
 
-$phone = new realme;
+$phone = new mobile;
 echo  $phone->mobilefunction();
 echo "<br>";
-echo  $mobile->mobilefunction();
+echo  $phone->mobilefunction();
 echo "<br>";
-echo  $phone->realmefunction();
+$realme = new realme;
+echo  $realme->realmefunction();
 echo "<br>";
 $phone = new samsung;
 echo  $phone->samsungfunction();

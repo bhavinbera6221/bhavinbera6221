@@ -1,7 +1,7 @@
 <?php
 
 class constructdemo{
-
+    
     public function __construct(){
         
         echo "called contruct--";
@@ -11,7 +11,7 @@ class constructdemo{
         
         echo "called destruct";
         
-    }
+    }           
 
 } 
 $object = new constructdemo;

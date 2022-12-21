@@ -29,6 +29,10 @@ trait iphone{
     {
        return "iphone series";
     }
+    public function iphonefunction1()
+    {
+       return "iphone1 series";
+    }
 }
 
 trait nothing{
@@ -53,6 +57,8 @@ echo "<br>";
 echo $mobile->samsungfunction();
 echo "<br>";
 echo $mobile->vivofunction();
+echo "<br>";
+echo $mobile->iphonefunction();
 echo "<br>";
 echo $mobile->iphonefunction();
 echo "<br>";
