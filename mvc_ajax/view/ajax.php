@@ -39,36 +39,24 @@
 
                         <div class="container">
                             <div class="mb-3">
+                                <input type="hidden" name="id" value="id" id="id">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" name="name" class="form-control" id="name">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address</label>
-                                <input type="text" name="email" class="form-control" id="email" placeholder="name@example.com">
+                                <input type="text" name="email"  class="form-control" id="email" placeholder="name@example.com">
                             </div>
                             <div class="mb-3">
                                 <label for="mobile" class="form-label">Mobile</label>
-                                <input type="text" name="mobile" class="form-control" id="mobile">
+                                <input type="text" name="mobile"  class="form-control" id="mobile">
                             </div>
                             <div class="mb-3">
 
-                                <label for="gender" id="gender">Gender</label><br>
-                                <input type="radio" name="gender" id="male" value="male"><label for="male">Male</label>
-                                <input type="radio" name="gender" id="female" value="female"><label for="female">Female</label>
+                                <label for="gender">Gender</label><br>
+                                <input type="radio" name="gender" id="gender?male" value="male"><label for="gender?male">Male</label>
+                                <input type="radio" name="gender" id="gender?female" value="female"><label for="gender?female">Female</label>
                             </div>
-                            <div class="mb-3">
-                                <label for="hobby" id="hobby">Hobby</label><br>
-                                <input type="checkbox" name="hobby" id="playing" value="playing"> <label for="playing">Playing</label>
-                                <input type="checkbox" name="hobby" id="reading" value="reading"> <label for="reading">Reading</label>
-                                <input type="checkbox" name="hobby" id="travelling" value="travelling"> <label for="travelling">Travelling</label>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="file" name="prof_pic" class="form-control" id="prof_pic">
-                            </div>
-                            <!-- <button type="submit" name="submit" class="btn btn-primary">Submit</button> -->
-                            <!-- <a href="select.php">
-                                <button type="button" name="view" class="btn btn-info">View</button>
-                                </a> -->
                         </div>
                     </form>
                 </div>
@@ -105,13 +93,13 @@
     $(document).ready(function() {
         fetchData();
     });
-    // $(window).on("load", function() {
-    //     fetchData();
-    // });
+    $(window).on("load", function() {
+
+    });
 
     function fetchData() {
         $.ajax({
-            url: "http://localhost/bhavin/bhavinbera6221/mvc_ajax/selectdata",
+            url: "selectdata",
             success: function(responce) {
                 data = JSON.parse(responce)
                 console.log(data.Data);
@@ -124,7 +112,7 @@
                     <td>${element.email}</td>
                     <td>${element.mobile}</td>
                     <td>
-                    <button class="btn btn-sm btn-primary" onclick="editdata(${element.id})">edit</button>
+                    <button class="btn btn-sm btn-primary" name="name" onclick="editdata(${element.id})">edit</button>
                     <button class="btn btn-sm btn-danger" onclick="deletedata(${element.id})">delete</button>
                     </td>
                     
@@ -139,21 +127,26 @@
 
     function savecategorydata() {
         event.preventDefault();
-       
         var result = {};
         $.each($('#userform').serializeArray(), function() {
             result[this.name] = this.value;
         });
+
+        // var data = {
+        //     name: $('#name').val(),
+        //     email: $('#email').val(),
+        //     mobile: $('#mobile').val(),
+        //     gender: $('#gender').val(),
+        // };
+
         console.log(result);
         $.ajax({
             type: "POST",
-            dataType: "json",
             data: result,
             url: "saveuserdata",
             success: function(responce) {
-                data = JSON.parse(responce)
-                console.log(data);
-                if (responce == 1) {
+                console.log(responce);
+                if (responce == 0) {
                     $('#exampleModal').modal('hide');
                     fetchData();
                 } else {
@@ -162,5 +155,84 @@
             }
         })
 
+    }
+
+
+
+    function editdata(id) {
+        event.preventDefault();
+        // var result = {};
+        // $.each($('#userform').serializeArray(), function() {
+        //     result[this.name] = this.value;
+        // });
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: {
+                id: id,
+            },
+            url: "edituserdata",
+            success: function(response) {
+                data = JSON.parse(response)
+                $('#exampleModal').modal('show');
+                $("#id").val(data.id);
+                $("#name").val(data.name);
+                $("#email").val(data.email);
+                $("#mobile").val(data.mobile);
+                $("#gender").val(data.gender);
+                $("#save").attr("onclick", "updatedata(" + data.id + ")");
+            }
+        });
+    }
+
+    function updatedata(id) {
+        var result = {};
+        $.each($('#userform').serializeArray(), function() {
+            result[this.name] = this.value;
+        });
+
+        // var data = {
+        //     id: $('#id').val(),
+        //     name: $('#name').val(),
+        //     email: $('#email').val(),
+        //     mobile: $('#mobile').val(),
+        //     gender: $('#gender').val(),
+        // };
+
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: result,
+            url: "updateuserdata",
+            success: function(responce) {
+                console.log(responce);
+                if (responce == 0) {
+                    $('#exampleModal').modal('hide');
+                    fetchData();
+                } else {
+                    alert("Error while updating")
+                }
+            }
+        })
+
+    }
+
+    function deletedata(id) {
+        event.preventDefault();
+        
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            data: {id:id},
+            url: "deleteuserdata",
+            success: function(responce) {
+                console.log(responce);
+                if (responce == 1) {
+                    fetchData();
+                } else {
+                    alert("Error while deleting")
+                }
+            }
+        })
     }
 </script>

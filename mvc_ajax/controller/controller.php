@@ -19,12 +19,25 @@ class controller extends model
                     break;
 
                 case '/saveuserdata':
-                    $saveData = $this->insert('user', $_POST);
-                    echo json_encode($saveData);
-                    // echo "<pre>";
-                    // print_r($saveData);
+                    $saveData = $this->insertuser($_POST);
+                    // echo json_encode($saveData);
+                    break;
+
+                case '/edituserdata':
+                    $data = $this->edituser($_POST);
+                    echo json_encode($data);
+                    break;
+                    
+                    case '/updateuserdata':
+                        $updateuser = $this->updatenewuser($_POST);
+                    break;
+
+                    case '/deleteuserdata':
+                        $updateuser = $this->delete($_POST);
                     break;
             }
+        } else {
+            header("location:ajax");
         }
     }
 }

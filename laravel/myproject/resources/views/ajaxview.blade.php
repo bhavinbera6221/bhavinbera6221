@@ -107,12 +107,8 @@
 
     }
 
-
-
     function savecategorydata() {
         event.preventDefault();
-        // var serialize = $('#category_form').serialize();
-        // var serializearray = $('#category_form').serializeArray();
 
         var result = {};
         $.each($('#category_form').serializeArray(), function() {
@@ -136,29 +132,33 @@
         })
 
     }
+
     function editdata(id) {
         event.preventDefault();
         let token = $('#_token').val();
         $.ajax({
             type: "POST",
             dataType: "json",
-            data: {id:id, _token:token},
+            data: {
+                id: id,
+                _token: token
+            },
             url: "editcategorydata",
             success: function(responce) {
                 $('#exampleModal').modal('show');
                 $("#category_title").val(responce.category_title);
                 $("#category_description").val(responce.category_description);
-                $("#save").attr("onclick","updatedata("+responce.category_id+")");
+                $("#save").attr("onclick", "updatedata(" + responce.category_id + ")");
 
             }
         })
 
     }
-    
-function updatedata(id) {
-    event.preventDefault();
-    // console.log("called");
-    var result = {};
+
+    function updatedata(id) {
+        event.preventDefault();
+        // console.log("called");
+        var result = {};
         $.each($('#category_form').serializeArray(), function() {
             result[this.name] = this.value;
         });
@@ -178,11 +178,11 @@ function updatedata(id) {
                 }
             }
         })
-}
+    }
 
-function deletedata(id) {
-    event.preventDefault();
-    var result = {};
+    function deletedata(id) {
+        event.preventDefault();
+        var result = {};
         $.each($('#category_form').serializeArray(), function() {
             result[this.name] = this.value;
         });
@@ -201,8 +201,7 @@ function deletedata(id) {
                 }
             }
         })
-}
-
+    }
 </script>
 
 @endpush
