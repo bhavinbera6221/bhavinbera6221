@@ -2,7 +2,6 @@
 
 class Model
 {
-
     public $dbconnection = "";
     public function __construct()
     {
@@ -65,8 +64,8 @@ class Model
         // echo $SQL;
         $SQLEx = $this->dbconnection->query($SQL);
         // return $SQL;
-        echo "<pre>";
-        print_r($SQLEx);
+        // echo "<pre>";
+        // print_r($SQLEx);
         if ($SQLEx->num_rows > 0) {
             while ($fData = $SQLEx->fetch_object()) {
                 $FetchData[] = $fData;
@@ -83,28 +82,6 @@ class Model
         }
         return $Data;
     }
-
-    // public function login($uname, $pass)
-    // {
-    //     $SQL = 'SELECT * FROM `users` WHERE (`username`="' . $uname . '" OR `email`="' . $uname . '" OR `mobile`="' . $uname . '") AND password="' . $pass . '"';        
-
-    //     $SQLEx = $this->dbConnection->query($SQL);
-        
-    //     if ($SQLEx->num_rows > 0) {
-
-    //         while ($fData = $SQLEx->fetch_object()) {
-    //             $FetchData[] = $fData;
-    //         }
-    //         $Data['Msg'] = "Success";
-    //         $Data['Data'] = $FetchData;
-    //         $Data['Code'] = 1;
-    //     } else {
-    //         $Data['Msg'] = "Try Again";
-    //         $Data['Data'] = 0;
-    //         $Data['Code'] = 0;
-    //     }
-    //     return $Data;
-    // }
 
 
     public function insert($tbl, $Data)

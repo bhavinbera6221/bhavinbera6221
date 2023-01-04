@@ -48,7 +48,7 @@ class mobile{
     {
         return "all mobile series available here";
     }
-}
+}     
 $mobile = new mobile;
 echo $mobile->mobilefunction();
 echo "<br>";

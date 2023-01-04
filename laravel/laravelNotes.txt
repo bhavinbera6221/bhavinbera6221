@@ -20,3 +20,72 @@ your code
 Laravel Custom Macros Link START
 https://medium.com/@NahidulHasan/how-to-use-macros-in-laravel-a9078a0610f9
 Laravel Custom Macros Link END
+
+*install laravel
+1.composer create-project laravel/laravel example-app
+
+*migration 
+1.php artisan migrate
+
+*create auth
+1.composer require laravel/ui
+
+*create login and registration
+1.php artisan ui bootstrap
+2.php artisan ui bootstrap --auth
+
+*npm install && npm run dev
+1.npm install or npm i
+
+*create custome migrate
+1.php artisan make:migration create_name_table
+
+*create custome migration with table
+1.php artisan make:migration create_name_table -tabble=name
+
+*run custom migration
+1.php artisan migrate:status
+2.php artisan migrate:rollback
+3.php artisan migrate
+
+*alter migrate table
+php artisan  make:migration create_name_table --table=name
+
+*alter table add column
+1. Schema::create('flights', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('airline');
+            $table->timestamps();
+        });
+
+*create seeder
+1.php artisan make:seeder seedername
+
+
+*faker
+1.use Faker\Generator as Faker;
+2
+    public function run(Faker $faker)
+    {
+        for ($i=0; $i < 15; $i++) { 
+            
+            \DB::table('product')->insert([
+                'title' =>  $faker->name,
+                'description' =>  $faker->address,
+                'price' => rand(10,10000),
+                'quantity' => rand(10,1000),
+            ]);
+        }
+    }
+3.php artisan db:seed
+4.php artisan db:seed --class=seedername
+
+*create controller and model
+1.php artisan make:controller name --resource
+2.php artisan make:model --resource
+3.php artisan make:model name -mcr
+
+
+*csrf _token
+1.<input type="hidden" name="_token" value="{{ csrf_token() }}" />

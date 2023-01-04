@@ -36,21 +36,6 @@ class mobile implements samsung, realme, vivo
     }
 }
 
-// class iphone extends mobile
-// {
-//     function iphonefunction()
-//     {
-//         return "iphone series";
-//     }
-// }
-
-// class nothing extends mobile
-// {
-//     function nothingfunction()
-//     {
-//         return "nothing new series start";
-//     }
-// }
 
 $phone = new mobile;
 echo $phone->mobilefunction();

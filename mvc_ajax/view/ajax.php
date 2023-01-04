@@ -45,11 +45,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address</label>
-                                <input type="text" name="email"  class="form-control" id="email" placeholder="name@example.com">
+                                <input type="text" name="email" class="form-control" id="email" placeholder="name@example.com">
                             </div>
                             <div class="mb-3">
                                 <label for="mobile" class="form-label">Mobile</label>
-                                <input type="text" name="mobile"  class="form-control" id="mobile">
+                                <input type="text" name="mobile" class="form-control" id="mobile">
                             </div>
                             <div class="mb-3">
 
@@ -71,7 +71,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Add User
         </button>
-        <table class="table table-bordered">
+        <table class="table table-bordered ">
             <thead class="bg-dark text-light">
                 <tr>
                     <th>Sr No.</th>
@@ -93,9 +93,12 @@
     $(document).ready(function() {
         fetchData();
     });
-    $(window).on("load", function() {
+    $(window).on("load", function() {});
 
-    });
+    function resetMyForm() {
+        $('input').val('');
+        $('#userform').val(0) ;
+    }
 
     function fetchData() {
         $.ajax({
@@ -148,6 +151,7 @@
                 console.log(responce);
                 if (responce == 0) {
                     $('#exampleModal').modal('hide');
+                    resetMyForm();
                     fetchData();
                 } else {
                     alert("Error while inserting")
@@ -209,6 +213,7 @@
                 if (responce == 0) {
                     $('#exampleModal').modal('hide');
                     fetchData();
+                    resetMyForm();
                 } else {
                     alert("Error while updating")
                 }
@@ -219,11 +224,13 @@
 
     function deletedata(id) {
         event.preventDefault();
-        
+
         console.log(data);
         $.ajax({
             type: "POST",
-            data: {id:id},
+            data: {
+                id: id
+            },
             url: "deleteuserdata",
             success: function(responce) {
                 console.log(responce);

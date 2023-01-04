@@ -14,7 +14,7 @@ class AjaxController extends Controller
      */
     public function index(categaries $category)
     {
-        return $category->get();
+        return $category->get();    
         // dd($allcategories);
         // return "something";
     }

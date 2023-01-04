@@ -73,7 +73,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required|max:255',
-            'price' => 'required|max:10000',
+            'price' => 'required|max:10000',    
             'quantity' => 'required|max:1000'
         ]);
         // dd($request->all());  

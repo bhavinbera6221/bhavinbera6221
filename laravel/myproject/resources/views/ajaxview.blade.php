@@ -83,11 +83,11 @@
     function fetchData() {
         $.ajax({
             url: "selectallcategorydata",
-            success: function(responce) {
-                console.log(responce);
+            success: function(response) {
+                console.log(response);
                 htmltabledata = ""
                 count = "1"
-                responce.forEach(element => {
+                response.forEach(element => {
                     htmltabledata += `<tr>
                     <td>${count}</td>
                     <td>${element.category_title}</td>
@@ -100,7 +100,7 @@
                     </tr>`
                     count++;
                 });
-                $("#DespCat").html(htmltabledata)
+                $("#dispajax").html(htmltabledata)
             }
 
         })
@@ -204,4 +204,4 @@
     }
 </script>
 
-@endpush
+@endpush    

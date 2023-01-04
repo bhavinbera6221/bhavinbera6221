@@ -30,7 +30,7 @@
                     <th class="col col-lg-1">Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-light bg-dark">
                 <?php
                 $count = "1";
                 foreach ($allrequirement['Data'] as $key => $value) {
