@@ -53,7 +53,7 @@
                 <div class="modal-body">
                     <div class="row-mt-3">
                         <div class="">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
                             <label for="title">Title</label>
                             <input type="text" name="title" class="form-control" id="title">
                         </div>
@@ -83,7 +83,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                     <input type="submit" onclick="savedata()" value="Add" name="btn_add" class="btn btn-primary" id="btn_add">
                 </div>
             </div>
@@ -96,6 +95,11 @@
     $(window).on("load", function(e) {
         fetchData()
     });
+
+    function resetMyForm() {
+        $('input').val('');
+        $('#product_form').val(0);
+    }
 
     // $(document).ready(function() {
     //     alert("ready!");
@@ -119,12 +123,10 @@
                     <button class="btn btn-sm btn-primary" onclick="editdata(${element.id})">edit</button>
                     <button class="btn btn-sm btn-danger" onclick="deletedata(${element.id})">delete</button>
                     </td>
-                    
                     </tr>`
                     count++;
                 });
                 $("#desp").html(htmltabledata);
-
             }
         })
     }
@@ -133,12 +135,6 @@
     function savedata() {
         event.preventDefault();
 
-        // var data = {
-        //     title: $('#title').val(),
-        //     description: $('#description').val(),
-        //     price: $('#price').val(),
-        //     quantity: $('#quantity').val(),
-        // }
         var result = {};
         $.each($('#product_form').serializeArray(), function() {
             result[this.name] = this.value;
@@ -146,7 +142,6 @@
         console.log(result);
         $.ajax({
             type: "POST",
-            // dataType: "json",
             data: result,
             url: "saveajax",
             success: function(response) {
@@ -162,7 +157,7 @@
     }
 
     function editdata(id) {
-        event.preventDefault()
+        event.preventDefault();
         let token = $('#_token').val();
         $.ajax({
             type: "post",
@@ -171,11 +166,63 @@
                 _token: token
             },
             url: "editdata",
-            success:function(response){
-                console.log(response);
+            success: function(response) {
+                // console.log(response);
+                $('#exampleModal').modal('show');
+                $("#title").val(response.title);
+                $("#description").val(response.description);
+                $("#price").val(response.price);
+                $("#quantity").val(response.quantity);
+                $("#btn_add").attr("onclick", "updatedata(" + response.id + ")");
             }
         })
+    }
 
+    function updatedata(id) {
+        event.preventDefault();
+
+        var result = {};
+        $.each($('#product_form').serializeArray(), function() {
+            result[this.name] = this.value;
+        });
+
+        console.log(result);
+        $.ajax({
+            type: "POST",
+            data: result,
+            url: `/updateajaxdata/${id}`,
+            success: function(response) {
+                console.log(response);
+                if (response == 1) {
+                    $('#exampleModal').modal('hide');
+                    fetchData();
+                } else {
+                    alert("Error while inserting")
+                }
+            }
+        })
+    }
+
+    function deletedata(id) {
+        event.preventDefault();
+        var result = {};
+        $.each($('#product_form').serializeArray(), function() {
+            result[this.name] = this.value;
+        });
+        console.log(result);
+        $.ajax({
+            type: "POST",
+            data: result,
+            url: `deleteajaxdata/${id}`,
+            success: function(response) {
+                if (response == 1) {
+                    fetchData();
+                } else {
+                    alert("Error while inserting")
+                }
+            }
+
+        })
     }
 </script>
 @endpush

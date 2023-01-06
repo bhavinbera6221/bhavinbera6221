@@ -36,7 +36,6 @@ class AjaxController extends Controller
      */
     public function store(Request $request, ajax $ajax)
     {
-        // dd($request->all());
         $ajax->title = $request->title;
         $ajax->description = $request->description;
         $ajax->price = $request->price;
@@ -64,6 +63,7 @@ class AjaxController extends Controller
      */
     public function edit(Request $request, ajax $ajax)
     {
+        // dd($ajax::find($request->id));
         return $productdata = $ajax::find($request->id);
         // dd($productdata);
     }
@@ -75,9 +75,21 @@ class AjaxController extends Controller
      * @param  \App\Models\ajax  $ajax
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ajax $ajax)
+    public function update(Request $request, $id, ajax $ajax)
     {
-        //
+        // dd($request::find($request->id));
+        $ajaxproduct = $ajax::find($request->id);
+        // $ajaxproduct = $ajax::find($ajax->$id);
+        $ajaxproduct->title = $request->title;
+        $ajaxproduct->description = $request->description;
+        $ajaxproduct->price = $request->price;
+        $ajaxproduct->quantity = $request->quantity;
+        $data = $ajaxproduct->save();
+        // foreach ($ajaxproduct as $key => $value) {
+        //     $ajax->$key = $value;
+        // }
+        //  $data = $ajax->save();
+         return $data;
     }
 
     /**
@@ -86,8 +98,11 @@ class AjaxController extends Controller
      * @param  \App\Models\ajax  $ajax
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ajax $ajax)
+    public function destroy(ajax $ajax, $id)
     {
-        //
+        // dd($ajax->$id);
+        $ajaxdata = $ajax::find($id);
+        $data = $ajaxdata->delete();
+        return $data;
     }
 }

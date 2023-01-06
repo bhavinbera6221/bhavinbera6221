@@ -30,7 +30,10 @@ Route::get('/deleteprod/{prodid?}',[App\Http\Controllers\ProductController::clas
 Route::view('/ajaxview', 'ajaxproducts');
 Route::get('/ajaxselect', [App\Http\Controllers\AjaxController::class, 'index']);
 Route::post('/saveajax', [App\Http\Controllers\AjaxController::class, 'store']);
-Route::get('/editdata', [App\Http\Controllers\AjaxController::class, 'edit']);
+Route::post('/editdata', [App\Http\Controllers\AjaxController::class, 'edit']);
+Route::post('/updateajaxdata/{id}', [App\Http\Controllers\AjaxController::class, 'update']);
+Route::any('/deleteajaxdata/{id}', [App\Http\Controllers\AjaxController::class, 'destroy']);
+
 
 
 
