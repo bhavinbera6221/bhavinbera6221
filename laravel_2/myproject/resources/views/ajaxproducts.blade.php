@@ -221,7 +221,6 @@
                     alert("Error while inserting")
                 }
             }
-
         })
     }
 </script>

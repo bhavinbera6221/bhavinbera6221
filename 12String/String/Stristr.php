@@ -14,5 +14,9 @@ echo addcslashes($MyString,"demo");
 echo "<br>======== addslashes ==========<br>";
 
 echo addslashes($MyString);
+echo "<br>";
+ echo "lenth string=====<br>";
+$a = "";
+echo strlen($a);
 
 ?>

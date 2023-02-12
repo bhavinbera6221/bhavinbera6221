@@ -92,28 +92,33 @@
               $InsertArray = array_merge($_POST, array("hobby" => $hobby, "prof_pic" => $file_name));
               // $InsertArray = array_merge($_POST, array("hobby" => $hobby));
               $RegistUserData = $this->insert('user', $InsertArray);
-              if ($RegistUserData['Code'] == 1) { 
+              if ($RegistUserData['Code'] == 1) {
                 header('location:signin');
               } else {
                 echo  "Error";
               }
             }
             break;
+
           case '/deleteuser':
             $FetchAllUserData = $this->delete('user', array("id" => $_GET['userid'], "roll_id" => 2));
             header("location:admindashboard");
             break;
 
           case '/edituser':
-            
+
             // $UserDataById = $this->select('user',array("id" => $_REQUEST['userid']));
-            
-            $UserDataById = $this->select_join('user',
-            array(
-              "city"=>"user.city=city.city_id",
-              "state"=>"state.state_id=city.state_id",
-              "country"=>"country.country_id=state.country_id"),
-            array("user.id" => $_REQUEST['userid']));
+
+            $UserDataById = $this->select_join(
+              'user',
+              array(
+                "city" => "user.city=city.city_id",
+                "state" => "state.state_id=city.state_id",
+                "country" => "country.country_id=state.country_id"
+              ),
+
+              array("user.id" => $_REQUEST['userid'])
+            );  
 
             $allcountryData = $this->select("country");
             $allstateData = $this->select("state");
@@ -127,9 +132,6 @@
               $hobby = implode(",", $_POST['hobby']);
               array_pop($_POST);
               unset($_POST['hobby']);
-              // unset($_POST['country']);
-              // unset($_POST['state']);
-              // unset($_POST['city']);
 
               $UpdatewhereData = array("id" => $_REQUEST['userid']);
               // move file uplode
@@ -139,7 +141,7 @@
 
                     $tmp_name = $_FILES['prof_pic']['tmp_name'];
                     $image_name = $_FILES['prof_pic']['name'];
-                    $rand = rand(10000,100000);
+                    $rand = rand(10000, 100000);
                     $ext = pathinfo($_FILES['prof_pic']['name'], PATHINFO_EXTENSION);
                     $file_name =  $rand . "." . $ext;
                     move_uploaded_file($tmp_name, "uploads/" . $file_name);
@@ -166,18 +168,19 @@
               }
             }
             break;
-            case '/statedatabycountryid':
-              // echo "<pre>";
-              // print_r($_REQUEST);
-             $allstateDataByCountryId = $this->select("state",array("country_id"=>$_REQUEST['countryid']));
+            
+          case '/statedatabycountryid':
+            // echo "<pre>";
+            // print_r($_REQUEST);
+            $allstateDataByCountryId = $this->select("state", array("country_id" => $_REQUEST['countryid']));
             echo json_encode($allstateDataByCountryId);
-              break;
-              
-              case '/citydatabystateid':
-                $allcityDataByStateId = $this->select("city",array("state_id"=>$_REQUEST['stateid']));
-               echo json_encode($allcityDataByStateId);
-               break;
-  
+            break;
+
+          case '/citydatabystateid':
+            $allcityDataByStateId = $this->select("city", array("state_id" => $_REQUEST['stateid']));
+            echo json_encode($allcityDataByStateId);
+            break;
+
           case '/logout':
             include_once("views/admin/logout.php");
 
